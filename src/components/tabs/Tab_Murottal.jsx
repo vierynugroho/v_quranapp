@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { Skeleton, Grid, Typography, Paper } from '@mui/material';
+import { Skeleton, Grid, Typography, Paper, Badge, Stack } from '@mui/material';
 import useQuran from '../../hooks/useQuran';
 
 import { experimentalStyled as styled } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
+import { MenuBook } from '@mui/icons-material';
 
 const Item = styled(Paper)(({ theme }) => ({
 	backgroundColor: '#fff',
@@ -31,26 +33,45 @@ export const Tab_Murottal = () => {
 						md={4}
 					>
 						<Item>
-							<Typography component={'h2'}>
-								{loading ? (
-									<Skeleton
-										animation='wave'
-										sx={{ bgcolor: 'grey.900' }}
-									/>
-								) : (
-									surat.namaLatin + ' - ' + surat.nama
-								)}
-							</Typography>
-							<Typography component={'p'}>
-								{loading ? (
-									<Skeleton
-										animation='wave'
-										sx={{ bgcolor: 'grey.900' }}
-									/>
-								) : (
-									`(${surat.arti})`
-								)}
-							</Typography>
+							<Stack
+								direction={'row'}
+								spacing={2}
+							>
+								<Badge
+									badgeContent={surat.nomor}
+									color='error'
+									max={100000}
+								>
+									<MenuBook color='action' />
+								</Badge>
+								<Stack
+									width={'100%'}
+									direction={'column'}
+									justifyContent='flex-end'
+									alignItems='flex-end'
+								>
+									<Typography component={'h2'}>
+										{loading ? (
+											<Skeleton
+												animation='wave'
+												sx={{ bgcolor: 'grey.900' }}
+											/>
+										) : (
+											surat.namaLatin + ' - ' + surat.nama
+										)}
+									</Typography>
+									<Typography component={'p'}>
+										{loading ? (
+											<Skeleton
+												animation='wave'
+												sx={{ bgcolor: 'grey.900' }}
+											/>
+										) : (
+											`(${surat.arti})`
+										)}
+									</Typography>
+								</Stack>
+							</Stack>
 						</Item>
 					</Grid>
 				))}

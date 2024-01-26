@@ -5,6 +5,8 @@ import { Tafsir } from './components/pages/Tafsir';
 import { Surah } from './components/pages/Surah';
 import { Murottal } from './components/pages/Murottal';
 
+import './styles/font.css';
+
 export const App = () => {
 	return (
 		<>
