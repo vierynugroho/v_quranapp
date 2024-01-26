@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-
-import PropTypes from 'prop-types';
-
 import { Tabs, Tab, Box, Typography } from '@mui/material';
-
 import { Tab_Surah } from './tabs/Tab_Surah';
 import { Tab_Murottal } from './tabs/Tab_Murottal';
 import { Tab_Tafsir } from './tabs/Tab_Tafsir';
@@ -22,7 +18,7 @@ function CustomTabPanel(props) {
 			{value === index && (
 				<Box sx={{ p: 3 }}>
 					<Typography
-						component={'p'}
+						component={'div'}
 						variant='body2'
 					>
 						{children}
@@ -33,12 +29,6 @@ function CustomTabPanel(props) {
 	);
 }
 
-CustomTabPanel.propTypes = {
-	children: PropTypes.node,
-	index: PropTypes.number.isRequired,
-	value: PropTypes.number.isRequired,
-};
-
 function a11yProps(index) {
 	return {
 		id: `simple-tab-${index}`,
@@ -46,7 +36,7 @@ function a11yProps(index) {
 	};
 }
 
-export default function Tabs_Quran() {
+const Tabs_Quran = () => {
 	const [value, setValue] = useState(0);
 
 	const handleChange = (event, newValue) => {
@@ -95,4 +85,6 @@ export default function Tabs_Quran() {
 			</CustomTabPanel>
 		</Box>
 	);
-}
+};
+
+export default Tabs_Quran;

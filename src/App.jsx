@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 import { Tafsir } from './components/pages/Tafsir';
+import { Surah } from './components/pages/Surah';
+import { Murottal } from './components/pages/Murottal';
 
 export const App = () => {
 	return (
@@ -13,16 +15,16 @@ export const App = () => {
 						element={<Layout />}
 					/>
 					<Route
-						path='tafsir/:nomorSurat'
+						path='tafsir/:nomorSurah'
 						element={<Tafsir />}
 					/>
 					<Route
-						path='surah/:nomorSurat'
-						element={<Tafsir />}
+						path='surat/:nomorSurah'
+						element={<Surah />}
 					/>
 					<Route
-						path='murottal/:nomorSurat'
-						element={<Tafsir />}
+						path='murottal/:nomorSurah'
+						element={<Murottal />}
 					/>
 				</Routes>
 			</BrowserRouter>
