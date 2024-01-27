@@ -13,10 +13,9 @@ export const useTafsir = () => {
 			try {
 				const response = await axios.get('https://equran.id/api/v2/tafsir/' + nomorSurah);
 				setData(response.data.data);
+				setLoading(false);
 			} catch (error) {
 				setError(error);
-			} finally {
-				setLoading(false);
 			}
 		};
 		fetchData();

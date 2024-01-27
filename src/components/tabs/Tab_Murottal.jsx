@@ -16,66 +16,99 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export const Tab_Murottal = () => {
-	const { data, loading, error } = useQuran('surat');
+	const { data, loading, error } = useQuran('surat', 'murottal');
 	return (
 		<>
-			<Grid
-				container
-				spacing={{ xs: 2, md: 3 }}
-				columns={{ xs: 4, sm: 8, md: 12 }}
-			>
-				{data.map((surat, index) => (
-					<Grid
-						key={surat.nomor}
-						item
-						xs={2}
-						sm={4}
-						md={4}
-					>
-						<Item>
-							<Stack
-								direction={'row'}
-								spacing={2}
-							>
-								<Badge
-									badgeContent={surat.nomor}
-									color='error'
-									max={100000}
-								>
-									<MenuBook color='action' />
-								</Badge>
+			{loading ? (
+				<Grid
+					container
+					spacing={{ xs: 2, md: 3 }}
+					columns={{ xs: 4, sm: 8, md: 12 }}
+				>
+					{data.map((surat, index) => (
+						<Grid
+							key={surat.nomor}
+							item
+							xs={2}
+							sm={4}
+							md={4}
+						>
+							<Item>
 								<Stack
-									width={'100%'}
-									direction={'column'}
-									justifyContent='flex-end'
-									alignItems='flex-end'
+									direction={'row'}
+									spacing={2}
 								>
-									<Typography component={'h2'}>
-										{loading ? (
-											<Skeleton
-												animation='wave'
-												sx={{ bgcolor: 'grey.900' }}
-											/>
-										) : (
-											surat.namaLatin + ' - ' + surat.nama
-										)}
-									</Typography>
-									<Typography component={'p'}>
-										{loading ? (
-											<Skeleton
-												animation='wave'
-												sx={{ bgcolor: 'grey.900' }}
-											/>
-										) : (
-											`(${surat.arti})`
-										)}
-									</Typography>
+									<Skeleton
+										variant='circular'
+										width={40}
+										height={40}
+									/>
+									<Stack
+										width={'100%'}
+										direction={'column'}
+										justifyContent='flex-end'
+										alignItems='flex-end'
+									>
+										<Skeleton
+											width={210}
+											height={10}
+										/>
+										<Skeleton
+											width={210}
+											height={60}
+										/>
+									</Stack>
 								</Stack>
-							</Stack>
-						</Item>
-					</Grid>
-				))}
-			</Grid>
+							</Item>
+						</Grid>
+					))}
+				</Grid>
+			) : (
+				<Grid
+					container
+					spacing={{ xs: 2, md: 3 }}
+					columns={{ xs: 4, sm: 8, md: 12 }}
+				>
+					{data.map((surat, index) => (
+						<Grid
+							key={surat.nomor}
+							item
+							xs={2}
+							sm={4}
+							md={4}
+						>
+							<Link
+								to={'surat/' + surat.nomor}
+								style={{ textDecoration: 'none' }}
+							>
+								<Item>
+									<Stack
+										direction={'row'}
+										spacing={2}
+									>
+										<Badge
+											badgeContent={surat.nomor}
+											color='error'
+											max={100000}
+										>
+											<MenuBook color='action' />
+										</Badge>
+										<Stack
+											width={'100%'}
+											direction={'column'}
+											justifyContent='flex-end'
+											alignItems='flex-end'
+										>
+											<Typography component={'h2'}>{surat.namaLatin + ' - ' + surat.nama}</Typography>
+											<Typography component={'p'}>{`(${surat.arti})`}</Typography>
+										</Stack>
+									</Stack>
+								</Item>
+							</Link>
+						</Grid>
+					))}
+				</Grid>
+			)}
 		</>
 	);
 };
