@@ -3,6 +3,7 @@ import { Tabs, Tab, Box, Typography } from '@mui/material';
 import { Tab_Surah } from './tabs/Tab_Surah';
 import { Tab_Murottal } from './tabs/Tab_Murottal';
 import { Tab_Tafsir } from './tabs/Tab_Tafsir';
+import useQuran from '../hooks/useQuran';
 
 function CustomTabPanel(props) {
 	const { children, value, index, ...other } = props;

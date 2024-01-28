@@ -9,19 +9,17 @@ export const useSurah = () => {
 	const [error, setError] = useState(null);
 
 	useEffect(() => {
-		const fetchNotes = async () => {
+		const fetchData = async () => {
 			try {
-				setLoading(true);
-
 				const response = await axios.get('https://equran.id/api/v2/surat/' + nomorSurah);
 				setData(response.data.data);
-
-				setLoading(false);
 			} catch (error) {
 				setError(error);
+			} finally {
+				setLoading(false);
 			}
 		};
-		fetchNotes();
+		fetchData();
 	}, [nomorSurah]);
 
 	return { data, loading, error };

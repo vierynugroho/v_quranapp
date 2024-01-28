@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Skeleton, Grid, Typography, Paper, Badge, Stack } from '@mui/material';
 import useQuran from '../../hooks/useQuran';
@@ -16,7 +16,8 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export const Tab_Murottal = () => {
-	const { data, loading, error } = useQuran('surat', 'murottal');
+	const { data, loading, error } = useQuran();
+
 	return (
 		<>
 			{loading ? (
